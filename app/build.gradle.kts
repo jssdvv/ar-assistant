@@ -57,23 +57,30 @@ android {
 }
 
 dependencies {
-    // Androidx
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    // Androidx Compose
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.bundles.androidx.compose)
-
     // Testing
     testImplementation(libs.junit)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
     // Debug
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Androidx Activity
+    implementation(libs.androidx.activity.compose)
+
+    // Androidx Core
+    implementation(libs.androidx.core.ktx)
+
+    // Androidx Lifecycle
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Androidx Compose
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.androidx.compose)
+
+    // Androidx Camera
+    implementation(libs.bundles.androidx.camera)
 }

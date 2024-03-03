@@ -15,19 +15,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Ar_maintenanceTheme {
-                // A surface container using the 'background' color from the theme
-
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
                     val myCustomText = "Hola mundo 2"
-
                     MainScreen(
                         myText = myCustomText
                     )
-                    //resto del codigo
                 }
             }
         }
