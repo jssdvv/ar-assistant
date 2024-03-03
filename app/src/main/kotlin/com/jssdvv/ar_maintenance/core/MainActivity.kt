@@ -1,4 +1,4 @@
-package com.jssdvv.ar_maintenance
+package com.jssdvv.ar_maintenance.core
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
