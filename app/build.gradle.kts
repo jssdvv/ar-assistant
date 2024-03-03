@@ -14,7 +14,6 @@ android {
         manifest.srcFile("src/main/AndroidManifest.xml")
         res.srcDirs("src/main/res")
     }
-
     defaultConfig {
         applicationId = "com.jssdvv.ar_maintenance"
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -56,6 +55,14 @@ android {
     }
 }
 
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.jssdvv.ar_maintenance")
+        }
+    }
+}
+
 dependencies {
     // Testing
     testImplementation(libs.junit)
@@ -83,4 +90,7 @@ dependencies {
 
     // Androidx Camera
     implementation(libs.bundles.androidx.camera)
+
+    // Androidx Navigation
+    implementation(libs.androidx.navigation.compose)
 }
