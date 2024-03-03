@@ -10,7 +10,7 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets.all {
-        kotlin.srcDir("src/main/kotlin")
+        java.srcDir("src/main/kotlin")
         manifest.srcFile("src/main/AndroidManifest.xml")
         res.srcDirs("src/main/res")
     }
