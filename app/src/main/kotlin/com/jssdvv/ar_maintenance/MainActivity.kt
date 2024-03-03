@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.jssdvv.ar_maintenance.core.presentation.theme.Ar_maintenanceTheme
 import com.jssdvv.ar_maintenance.home.presentation.screens.MainScreen
-import com.jssdvv.ar_maintenance.ui.theme.Ar_maintenanceTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
