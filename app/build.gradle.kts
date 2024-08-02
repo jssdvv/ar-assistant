@@ -93,4 +93,7 @@ dependencies {
 
     // Androidx Navigation
     implementation(libs.androidx.navigation.compose)
+
+    // ARCore
+    implementation(libs.google.arcore)
 }

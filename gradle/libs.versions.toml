@@ -25,6 +25,8 @@ junit = "4.13.2"
 android-gradle-plugin = "8.3.0"
 sqldelight-plugin = "2.0.1"
 
+arcore = "1.33.0"
+
 [libraries]
 # Junit
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -64,6 +66,9 @@ androidx-camera-extensions = { module = "androidx.camera:camera-extensions", ver
 
 # Androidx Navigation
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation"}
+
+# ARCore
+google-arcore = { module = "com.google.ar:core", version.ref = "arcore"}
 
 [bundles]
 androidx-compose = [
