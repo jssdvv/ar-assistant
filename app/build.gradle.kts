@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.android.application)
@@ -6,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.jssdvv.ar_maintenance"
+    namespace = "com.jssdvv.ar_maintassist"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets.all {
@@ -15,7 +14,7 @@ android {
         res.srcDirs("src/main/res")
     }
     defaultConfig {
-        applicationId = "com.jssdvv.ar_maintenance"
+        applicationId = "com.jssdvv.ar_maintassist"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -58,7 +57,7 @@ android {
 sqldelight {
     databases {
         create("Database") {
-            packageName.set("com.jssdvv.ar_maintenance")
+            packageName.set("com.jssdvv.ar_maintassist")
         }
     }
 }
@@ -69,31 +68,29 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    //androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
     // Debug
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    //debugImplementation(libs.androidx.compose.ui.tooling)
+    //debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // Androidx Activity
+    // Androidx
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // Androidx Core
-    implementation(libs.androidx.core.ktx)
+    // Lifecycle
+    implementation(libs.bundles.androidx.lifecycle)
 
-    // Androidx Lifecycle
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-
-    // Androidx Compose
+    // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.androidx.compose)
 
-    // Androidx Camera
-    implementation(libs.bundles.androidx.camera)
-
-    // Androidx Navigation
+    // Compose Navigation
     implementation(libs.androidx.navigation.compose)
 
-    // ARCore
+    // CameraX
+    implementation(libs.bundles.androidx.camera)
+
+    // Augmented Reality
     implementation(libs.google.arcore)
 }
