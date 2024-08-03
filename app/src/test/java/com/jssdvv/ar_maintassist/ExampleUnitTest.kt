@@ -1,4 +1,4 @@
-package com.jssdvv.ar_maintenance
+package com.jssdvv.ar_maintassist
 
 import org.junit.Test
 

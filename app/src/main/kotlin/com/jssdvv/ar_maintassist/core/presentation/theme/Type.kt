@@ -1,4 +1,4 @@
-package com.jssdvv.ar_maintenance.core.presentation.theme
+package com.jssdvv.ar_maintassist.core.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

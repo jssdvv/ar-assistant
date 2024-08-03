@@ -1,4 +1,4 @@
-package com.jssdvv.ar_maintenance
+package com.jssdvv.ar_maintassist
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
