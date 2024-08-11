@@ -1,4 +1,6 @@
 plugins {
+    alias(libs.plugins.jetbrains.kotlin.plugin.serialization)
+    alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.android.application)
     alias(libs.plugins.cashapp.sqldelight)
@@ -44,15 +46,14 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compiler.get()
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    composeCompiler {}
 }
+
 
 sqldelight {
     databases {
@@ -70,13 +71,12 @@ dependencies {
     androidTestImplementation(libs.androidx.test.espresso.core)
     //androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
-    // Debug
-    //debugImplementation(libs.androidx.compose.ui.tooling)
-    //debugImplementation(libs.androidx.compose.ui.test.manifest)
-
     // Androidx
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
+
+    // Kotlinx
+    implementation(libs.jetbrains.kotlinx.serialization.json)
 
     // Lifecycle
     implementation(libs.bundles.androidx.lifecycle)
@@ -84,13 +84,15 @@ dependencies {
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.androidx.compose)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    //debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // Compose Navigation
+    // Navigation
     implementation(libs.androidx.navigation.compose)
 
-    // CameraX
+    // Camera
     implementation(libs.bundles.androidx.camera)
 
     // Augmented Reality
-    implementation(libs.google.arcore)
+    implementation(libs.sceneview.arsceneview)
 }
