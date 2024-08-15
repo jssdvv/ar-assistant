@@ -3,8 +3,6 @@
     <string name="app_name">AR MaintAssist</string>
     <string name="home_title">Inicio</string>
     <string name="camera_title">Cámara RA</string>
-    <string name="docs_title">Manuales</string>
-    <string name="calendar_title">Calendario</string>
-    <string name="point_your_phone_down">Apunta tú móvil abajo</string>
-    <string name="tap_anywhere_to_add_model">Presiona para agregar modelo</string>
+    <string name="resources_title">Recursos</string>
+    <string name="agenda_title">Agenda</string>
 </resources>

@@ -2,8 +2,6 @@
     <string name="app_name">AR MaintAssist</string>
     <string name="home_title">Home</string>
     <string name="camera_title">AR Camera</string>
-    <string name="docs_title">Manuals</string>
-    <string name="calendar_title">Calendar</string>
-    <string name="point_your_phone_down">Point your phone down</string>
-    <string name="tap_anywhere_to_add_model">Tap to put a model</string>
+    <string name="resources_title">Resources</string>
+    <string name="agenda_title">Agenda</string>
 </resources>
