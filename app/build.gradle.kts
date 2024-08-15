@@ -77,6 +77,7 @@ dependencies {
 
     // Kotlinx
     implementation(libs.jetbrains.kotlinx.serialization.json)
+    implementation(libs.jetbrains.kotlinx.coroutines.android)
 
     // Lifecycle
     implementation(libs.bundles.androidx.lifecycle)
