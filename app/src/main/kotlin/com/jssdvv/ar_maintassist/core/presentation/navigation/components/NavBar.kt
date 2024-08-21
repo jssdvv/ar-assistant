@@ -12,6 +12,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -21,9 +23,7 @@ fun NavBar(
     navHostController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    var selectedItem by remember { mutableIntStateOf(0) }
-    val backStackEntry by navHostController.currentBackStackEntryAsState()
-
+    val backStackEntry = navHostController.currentBackStackEntryAsState().value
     NavigationBar {
         val navItems = listOf(
             NavItems.HomeItem,
@@ -32,22 +32,24 @@ fun NavBar(
             NavItems.CalendarItem
         )
         navItems.forEach { item ->
+            val selected = backStackEntry?.destination?.hierarchy?.any { navDestination ->
+                navDestination.hasRoute(item.route::class)
+            } == true
             NavigationBarItem(
-                selected = true,
+                selected = selected,
                 onClick = {
                     navHostController.navigate(item.route) {
-                        navHostController.graph.findStartDestination().route?.let {
-                            popUpTo(it) {
-                                inclusive = true
-                            }
+                        popUpTo(navHostController.graph.findStartDestination().id) {
+                            saveState = true
                         }
                         launchSingleTop = true
-                        restoreState = true
                     }
                 },
                 icon = {
                     Icon(
-                        painter = painterResource(item.selectedIcon),
+                        painter = painterResource(
+                            if (selected) item.selectedIcon else item.unselectedIcon
+                        ),
                         contentDescription = item.description
                     )
                 },
