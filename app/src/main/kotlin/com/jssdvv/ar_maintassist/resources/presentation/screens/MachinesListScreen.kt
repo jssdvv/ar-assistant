@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 
 @Composable
-fun DocumentsScreen(
+fun MachinesListScreen(
     navHostController: NavHostController
-) { }
+) {
+
+}

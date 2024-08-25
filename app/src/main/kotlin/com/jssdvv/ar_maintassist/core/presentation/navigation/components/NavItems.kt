@@ -4,7 +4,7 @@ import com.jssdvv.ar_maintassist.R
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.AgendaNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.CameraNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.HomeNavGraph
-import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.ResourcesNavGraph
+import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.MachinesNavGraph
 
 sealed class NavItems(
     val title: Int,
@@ -31,7 +31,7 @@ sealed class NavItems(
 
     data object DocsItem : NavItems(
         title = R.string.resources_title,
-        route = ResourcesNavGraph,
+        route = MachinesNavGraph,
         selectedIcon = R.drawable.docs_filled,
         unselectedIcon = R.drawable.docs_outlined,
         description = ""
