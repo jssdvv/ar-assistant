@@ -14,8 +14,6 @@ import com.jssdvv.ar_maintassist.R
 @OptIn(ExperimentalTextApi::class)
 private fun createWeightVariationFontList(resId: Int, style: FontStyle): List<Font> {
     val fontWeights = listOf(
-        FontWeight.Thin,
-        FontWeight.ExtraLight,
         FontWeight.Light,
         FontWeight.Normal,
         FontWeight.Medium,
