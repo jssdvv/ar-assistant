@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.android.application)
-    alias(libs.plugins.cashapp.sqldelight)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
 }
 
 android {
@@ -54,15 +54,6 @@ android {
     composeCompiler {}
 }
 
-
-sqldelight {
-    databases {
-        create("Database") {
-            packageName.set("com.jssdvv.ar_maintassist")
-        }
-    }
-}
-
 dependencies {
     // Testing
     testImplementation(libs.junit)
@@ -96,4 +87,10 @@ dependencies {
 
     // Augmented Reality
     implementation(libs.sceneview.arsceneview)
+
+    // Databases
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }
