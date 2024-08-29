@@ -72,7 +72,7 @@ val NeutralVariant80 = Color(0XFFD6D6C2)
 val NeutralVariant90 = Color(0XFFEBEBE0)
 val NeutralVariant100 = Color.White
 
-//Error Key Colors
+// Error Key Colors
 val Error0 = Color.Black
 val Error10 = Color(0xFF330500)
 val Error20 = Color(0XFF660A00)
