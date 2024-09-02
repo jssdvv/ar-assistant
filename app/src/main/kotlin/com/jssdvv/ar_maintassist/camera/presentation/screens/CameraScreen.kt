@@ -46,7 +46,7 @@ fun ARSceneExample(
     val node = rememberNodes()
 
     val context = LocalContext.current
-    val inputStream = context.assets.open("augmentedImages/qr_example.jpg")
+    val inputStream = context.assets.open("images/qr_example.jpg")
     val bitmap = BitmapFactory.decodeStream(inputStream)
 
     val imageNodes = remember { mutableListOf<AugmentedImageNode>() }
@@ -82,7 +82,7 @@ fun ARSceneExample(
                             "QR" -> {
                                 addChildNode(
                                     ModelNode(
-                                        modelLoader.createModelInstance("CUBO_GLTF.glb"),
+                                        modelLoader.createModelInstance("models/CUBO_GLTF.glb"),
                                         centerOrigin = Position(0.0f)
                                     )
                                 )
