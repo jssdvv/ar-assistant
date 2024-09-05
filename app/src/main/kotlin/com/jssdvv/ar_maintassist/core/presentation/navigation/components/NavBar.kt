@@ -5,10 +5,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -26,10 +22,10 @@ fun NavBar(
     val backStackEntry = navHostController.currentBackStackEntryAsState().value
     NavigationBar {
         val navItems = listOf(
-            NavItems.HomeItem,
-            NavItems.CamItem,
-            NavItems.DocsItem,
-            NavItems.CalendarItem
+            NavItems.HomeNavItem,
+            NavItems.MachinesNavItem,
+            NavItems.InventoryNavItem,
+            NavItems.AgendaNavItem
         )
         navItems.forEach { item ->
             val selected = backStackEntry?.destination?.hierarchy?.any { navDestination ->

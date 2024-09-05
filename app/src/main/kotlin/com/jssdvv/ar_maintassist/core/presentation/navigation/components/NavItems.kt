@@ -2,7 +2,7 @@ package com.jssdvv.ar_maintassist.core.presentation.navigation.components
 
 import com.jssdvv.ar_maintassist.R
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.AgendaNavGraph
-import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.CameraNavGraph
+import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.InventoryNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.HomeNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.MachinesNavGraph
 
@@ -13,7 +13,7 @@ sealed class NavItems(
     val unselectedIcon: Int,
     val description: String
 ) {
-    data object HomeItem : NavItems(
+    data object HomeNavItem : NavItems(
         title = R.string.home_title,
         route = HomeNavGraph,
         selectedIcon = R.drawable.home_filled,
@@ -21,23 +21,23 @@ sealed class NavItems(
         description = ""
     )
 
-    data object CamItem : NavItems(
-        title = R.string.camera_title,
-        route = CameraNavGraph,
-        selectedIcon = R.drawable.ar_filled,
-        unselectedIcon = R.drawable.ar_outlined,
-        description = ""
-    )
-
-    data object DocsItem : NavItems(
-        title = R.string.resources_title,
+    data object MachinesNavItem : NavItems(
+        title = R.string.machines_title,
         route = MachinesNavGraph,
-        selectedIcon = R.drawable.docs_filled,
-        unselectedIcon = R.drawable.docs_outlined,
+        selectedIcon = R.drawable.tools_filled,
+        unselectedIcon = R.drawable.tools_outlined,
         description = ""
     )
 
-    data object CalendarItem : NavItems(
+    data object InventoryNavItem : NavItems(
+        title = R.string.inventory_title,
+        route = InventoryNavGraph,
+        selectedIcon = R.drawable.storage_filled,
+        unselectedIcon = R.drawable.storage_outlined,
+        description = ""
+    )
+
+    data object AgendaNavItem : NavItems(
         title = R.string.agenda_title,
         route = AgendaNavGraph,
         selectedIcon = R.drawable.calendar_filled,
