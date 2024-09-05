@@ -98,6 +98,7 @@ dependencies {
     // Dependency Injection
     implementation(libs.google.dagger.hilt.android)
     kapt(libs.google.dagger.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 }
 
 kapt {
