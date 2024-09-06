@@ -1,30 +1,28 @@
 package com.jssdvv.ar_maintassist.inventory.domain.usescases
 
-import com.jssdvv.ar_maintassist.inventory.domain.repositories.InventoryRepository
-import com.jssdvv.ar_maintassist.machines.domain.models.MachineEntity
-import com.jssdvv.ar_maintassist.machines.domain.utils.MachineOrder
 import com.jssdvv.ar_maintassist.core.domain.utils.OrderType
-import com.jssdvv.ar_maintassist.inventory.domain.models.InventoryEntity
-import com.jssdvv.ar_maintassist.inventory.domain.utils.InventoryOrder
+import com.jssdvv.ar_maintassist.inventory.domain.models.InventoryItemEntity
+import com.jssdvv.ar_maintassist.inventory.domain.repositories.InventoryItemRepository
+import com.jssdvv.ar_maintassist.inventory.domain.utils.InventoryItemOrderKey
 import kotlinx.coroutines.flow.Flow
 
 class GetInventoryItems(
-    private val repository: InventoryRepository
+    private val repository: InventoryItemRepository
 ) {
     operator fun invoke(
-        inventoryOrder: InventoryOrder = InventoryOrder.Code(OrderType.ASCENDING),
-    ): Flow<List<InventoryEntity>> {
-        return when (inventoryOrder.orderType) {
-            OrderType.ASCENDING -> when (inventoryOrder) {
-                is InventoryOrder.Code -> repository.getAllItemsByCodeAsc()
-                is InventoryOrder.Name -> repository.getAllItemsByNameAsc()
-                is InventoryOrder.Timestamp -> repository.getAllItemsByTimestampAsc()
+        orderKey: InventoryItemOrderKey = InventoryItemOrderKey.Id(OrderType.ASCENDING),
+    ): Flow<List<InventoryItemEntity>> {
+        return when (orderKey.orderType) {
+            OrderType.ASCENDING -> when (orderKey) {
+                is InventoryItemOrderKey.Id -> repository.getAllInventoryItemsByIdAsc()
+                is InventoryItemOrderKey.Name -> repository.getAllInventoryItemsByNameAsc()
+                is InventoryItemOrderKey.Timestamp -> repository.getAllInventoryItemsByTimestampAsc()
             }
 
-            OrderType.DESCENDING -> when (inventoryOrder) {
-                is InventoryOrder.Code -> repository.getAllItemsByCodeDesc()
-                is InventoryOrder.Name -> repository.getAllItemsByNameDesc()
-                is InventoryOrder.Timestamp -> repository.getAllItemsByTimestampDesc()
+            OrderType.DESCENDING -> when (orderKey) {
+                is InventoryItemOrderKey.Id -> repository.getAllInventoryItemsByIdDesc()
+                is InventoryItemOrderKey.Name -> repository.getAllInventoryItemsByNameDesc()
+                is InventoryItemOrderKey.Timestamp -> repository.getAllInventoryItemsByTimestampDesc()
             }
         }
     }

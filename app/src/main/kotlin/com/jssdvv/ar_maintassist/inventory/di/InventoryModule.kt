@@ -2,13 +2,14 @@ package com.jssdvv.ar_maintassist.inventory.di
 
 import android.app.Application
 import androidx.room.Room
-import com.jssdvv.ar_maintassist.inventory.data.local.InventoryDatabase
-import com.jssdvv.ar_maintassist.inventory.data.repositories.InventoryRepositoryImpl
-import com.jssdvv.ar_maintassist.inventory.domain.repositories.InventoryRepository
-import com.jssdvv.ar_maintassist.inventory.domain.usescases.AddInventoryItem
+import com.jssdvv.ar_maintassist.inventory.data.local.InventoryItemDatabase
+import com.jssdvv.ar_maintassist.inventory.data.repositories.InventoryItemRepositoryImpl
+import com.jssdvv.ar_maintassist.inventory.domain.repositories.InventoryItemRepository
 import com.jssdvv.ar_maintassist.inventory.domain.usescases.DeleteInventoryItem
 import com.jssdvv.ar_maintassist.inventory.domain.usescases.GetInventoryItems
-import com.jssdvv.ar_maintassist.inventory.domain.usescases.InventoryUseCases
+import com.jssdvv.ar_maintassist.inventory.domain.usescases.InsertInventoryItem
+import com.jssdvv.ar_maintassist.inventory.domain.usescases.InventoryItemUseCases
+import com.jssdvv.ar_maintassist.inventory.domain.usescases.UpdateInventoryItem
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,27 +21,28 @@ import javax.inject.Singleton
 object InventoryModule {
     @Provides
     @Singleton
-    fun provideInventoryDatabase(context: Application): InventoryDatabase {
+    fun provideInventoryDatabase(context: Application): InventoryItemDatabase {
         return Room.databaseBuilder(
             context = context,
-            klass = InventoryDatabase::class.java,
-            name = InventoryDatabase.DATABASE_NAME
+            klass = InventoryItemDatabase::class.java,
+            name = InventoryItemDatabase.DATABASE_NAME
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideInventoryRepository(database: InventoryDatabase): InventoryRepository {
-        return InventoryRepositoryImpl(database.dao)
+    fun provideInventoryRepository(database: InventoryItemDatabase): InventoryItemRepository {
+        return InventoryItemRepositoryImpl(database.dao)
     }
 
     @Provides
     @Singleton
-    fun provideInventoryUseCases(repository: InventoryRepository): InventoryUseCases {
-        return InventoryUseCases(
+    fun provideInventoryUseCases(repository: InventoryItemRepository): InventoryItemUseCases {
+        return InventoryItemUseCases(
             getInventoryItems = GetInventoryItems(repository),
-            deleteInventoryItem = DeleteInventoryItem(repository),
-            addInventoryItem = AddInventoryItem(repository)
+            insertInventoryItem = InsertInventoryItem(repository),
+            updateInventoryItem = UpdateInventoryItem(repository),
+            deleteInventoryItem = DeleteInventoryItem(repository)
         )
     }
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jssdvv.ar_maintassist.machines.domain.models.MachineEntity
 import com.jssdvv.ar_maintassist.machines.domain.usecases.MachineUseCases
-import com.jssdvv.ar_maintassist.machines.domain.utils.MachineOrder
+import com.jssdvv.ar_maintassist.machines.domain.utils.MachineOrderKey
 import com.jssdvv.ar_maintassist.core.domain.utils.OrderType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -28,14 +28,14 @@ class MachinesListViewModel @Inject constructor(
     private var _getMachinesJob: Job? = null
 
     init {
-        getMachines(MachineOrder.Timestamp(OrderType.ASCENDING))
+        getMachines(MachineOrderKey.Timestamp(OrderType.ASCENDING))
     }
 
     fun onEvent(event: MachinesListEvent) {
         when (event) {
-            is MachinesListEvent.Order -> {
-                if (state.value.machineOrder::class == event.machineOrder::class &&
-                    state.value.machineOrder.orderType == event.machineOrder.orderType
+            is MachinesListEvent.OrderMachines -> {
+                if (state.value.machineOrderKey::class == event.orderKey::class &&
+                    state.value.machineOrderKey.orderType == event.orderKey.orderType
                 ) {
                     return
                 }
@@ -43,14 +43,14 @@ class MachinesListViewModel @Inject constructor(
 
             is MachinesListEvent.DeleteMachine -> {
                 viewModelScope.launch {
-                    useCases.deleteMachine(event.machineEntity)
-                    _lastDeletedMachine = event.machineEntity
+                    useCases.deleteMachine(event.entity)
+                    _lastDeletedMachine = event.entity
                 }
             }
 
             is MachinesListEvent.RestoreMachine -> {
                 viewModelScope.launch {
-                    useCases.addMachine(_lastDeletedMachine ?: return@launch)
+                    useCases.insertMachine(_lastDeletedMachine ?: return@launch)
                     _lastDeletedMachine = null
                 }
             }
@@ -63,12 +63,12 @@ class MachinesListViewModel @Inject constructor(
         }
     }
 
-    private fun getMachines(machineOrder: MachineOrder) {
+    private fun getMachines(machineOrderKey: MachineOrderKey) {
         _getMachinesJob?.cancel()
-        _getMachinesJob = useCases.getMachines(machineOrder).onEach { machines ->
+        _getMachinesJob = useCases.getMachines(machineOrderKey).onEach { machines ->
             _state.value = state.value.copy(
                 machines = machines,
-                machineOrder = machineOrder
+                machineOrderKey = machineOrderKey
             )
         }.launchIn(viewModelScope)
     }

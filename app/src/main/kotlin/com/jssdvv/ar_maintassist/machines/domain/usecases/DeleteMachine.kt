@@ -6,7 +6,7 @@ import com.jssdvv.ar_maintassist.machines.domain.repositories.MachineRepository
 class DeleteMachine(
     private val repository: MachineRepository
 ) {
-    suspend operator fun invoke(machineEntity: MachineEntity) {
-        repository.deleteMachine(machineEntity)
+    suspend operator fun invoke(entity: MachineEntity) {
+        repository.deleteMachine(entity)
     }
 }

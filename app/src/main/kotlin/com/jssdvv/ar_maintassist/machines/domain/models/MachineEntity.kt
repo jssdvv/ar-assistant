@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 data class MachineEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "category") val category: String,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "description") val description: String?,
+    @ColumnInfo(name = "category") val category: String,
+    @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "timestamp") val timestamp: Long
 )
 

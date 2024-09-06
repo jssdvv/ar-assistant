@@ -22,7 +22,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.ArCameraDestination
-import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.InventoryListDestination
 
 @Composable
 fun MaintenanceCard(

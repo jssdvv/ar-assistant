@@ -3,6 +3,7 @@ package com.jssdvv.ar_maintassist.machines.data.local
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.jssdvv.ar_maintassist.machines.domain.models.MachineEntity
@@ -28,12 +29,12 @@ interface MachineDao {
     @Query("SELECT * FROM machineTable ORDER BY timestamp DESC")
     fun getAllMachinesByTimestampDesc(): Flow<List<MachineEntity>>
 
-    @Insert
-    suspend fun insertMachine(machineEntity: MachineEntity)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertMachine(entity: MachineEntity)
+
+    @Update(onConflict = OnConflictStrategy.ABORT)
+    suspend fun updateMachine(entity: MachineEntity)
 
     @Delete
-    suspend fun deleteMachine(machineEntity: MachineEntity)
-
-    @Update
-    suspend fun updateMachine(machineEntity: MachineEntity)
+    suspend fun deleteMachine(entity: MachineEntity)
 }

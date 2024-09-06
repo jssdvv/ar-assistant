@@ -32,15 +32,15 @@ class MachineRepositoryImpl(
         return dao.getAllMachinesByTimestampDesc()
     }
 
-    override suspend fun insertMachine(machineEntity: MachineEntity) {
-        return dao.insertMachine(machineEntity)
+    override suspend fun insertMachine(entity: MachineEntity) {
+        return dao.insertMachine(entity)
     }
 
-    override suspend fun deleteMachine(machineEntity: MachineEntity) {
-        return dao.deleteMachine(machineEntity)
+    override suspend fun updateMachine(entity: MachineEntity) {
+        return dao.updateMachine(entity)
     }
 
-    override suspend fun updateMachine(machineEntity: MachineEntity) {
-        return dao.updateMachine(machineEntity)
+    override suspend fun deleteMachine(entity: MachineEntity) {
+        return dao.deleteMachine(entity)
     }
 }

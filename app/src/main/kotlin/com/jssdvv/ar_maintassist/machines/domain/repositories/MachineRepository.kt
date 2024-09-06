@@ -16,9 +16,9 @@ interface MachineRepository {
 
     fun getAllMachinesByTimestampDesc(): Flow<List<MachineEntity>>
 
-    suspend fun insertMachine(machineEntity: MachineEntity)
+    suspend fun insertMachine(entity: MachineEntity)
 
-    suspend fun deleteMachine(machineEntity: MachineEntity)
+    suspend fun updateMachine(entity: MachineEntity)
 
-    suspend fun updateMachine(machineEntity: MachineEntity)
+    suspend fun deleteMachine(entity: MachineEntity)
 }

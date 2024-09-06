@@ -11,8 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import com.jssdvv.ar_maintassist.core.presentation.navigation.components.NavBar
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.HomeNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.agendaNavGraph
-import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.inventoryNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.homeNavGraph
+import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.inventoryNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.machinesNavGraph
 
 @Composable
@@ -22,11 +22,11 @@ fun NavHost(
     val navHostController = rememberNavController()
     val backStackEntry = navHostController.currentBackStackEntryAsState().value
     val currentDestination = backStackEntry?.destination
-    val startGraphDestination = backStackEntry?.destination?.parent?.findStartDestination()
+    val currentStartGraphDestination = backStackEntry?.destination?.parent?.findStartDestination()
     Scaffold(
         topBar = {},
         bottomBar = {
-            if (currentDestination == startGraphDestination) {
+            if (currentDestination == currentStartGraphDestination) {
                 NavBar(navHostController = navHostController)
             }
         }
