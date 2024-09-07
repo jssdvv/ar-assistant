@@ -26,7 +26,7 @@ object MachineModule {
             context = context,
             klass = MachineDatabase::class.java,
             name = MachineDatabase.DATABASE_NAME
-        ).build()
+        ).createFromAsset("databases/machineDatabase.db").build()
     }
 
     @Provides
