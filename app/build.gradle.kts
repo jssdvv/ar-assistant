@@ -63,13 +63,14 @@ dependencies {
     androidTestImplementation(libs.androidx.test.espresso.core)
     //androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
-    // Androidx
+    // Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // Kotlinx
+    // Kotlin
     implementation(libs.jetbrains.kotlinx.serialization.json)
     implementation(libs.jetbrains.kotlinx.coroutines.android)
+    implementation(libs.jetbrains.kotlin.reflect)
 
     // Lifecycle
     implementation(libs.bundles.androidx.lifecycle)
