@@ -24,18 +24,18 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.jssdvv.ar_maintassist.R
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.MachineDataDestination
+import com.jssdvv.ar_maintassist.machines.domain.models.MachineEntity
 
 @Composable
 fun MachineCard(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
+    machineEntity: MachineEntity,
     onNavigateToMachineData: @Composable () -> Unit
 ) {
     ElevatedCard(
         modifier = modifier,
-        onClick = {
-
-        }
+        onClick = { }
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -53,14 +53,14 @@ fun MachineCard(
                 modifier = Modifier.padding(4.dp)
             )
             Text(
-                text = "Máquinas de aprovechamiento de fluidos",
+                text = machineEntity.category,
                 style = MaterialTheme.typography.titleSmall
             )
             Spacer(
                 modifier = Modifier.padding(4.dp)
             )
             Text(
-                text = "Compresor FIAC de 3HP",
+                text = machineEntity.name,
                 style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold)
             )
             Spacer(
@@ -69,7 +69,7 @@ fun MachineCard(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "Compresor reciprocante de 3 pistones de 3 HP y 3650 RPM, ubicado en el laboratorio de potencia fluida de la escuela de ingeniería mecánica de la Universidad Industrial de Santander (UIS)",
+                text = machineEntity.description,
                 textAlign = TextAlign.Justify,
                 style = MaterialTheme.typography.bodyLarge
             )
