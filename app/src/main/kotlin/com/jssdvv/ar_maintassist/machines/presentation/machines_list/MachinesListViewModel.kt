@@ -2,10 +2,10 @@ package com.jssdvv.ar_maintassist.machines.presentation.machines_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jssdvv.ar_maintassist.core.domain.utils.OrderType
 import com.jssdvv.ar_maintassist.machines.domain.models.MachineEntity
 import com.jssdvv.ar_maintassist.machines.domain.usecases.MachineUseCases
 import com.jssdvv.ar_maintassist.machines.domain.utils.MachineOrderKey
-import com.jssdvv.ar_maintassist.core.domain.utils.OrderType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +28,7 @@ class MachinesListViewModel @Inject constructor(
     private var _getMachinesJob: Job? = null
 
     init {
-        getMachines(MachineOrderKey.Timestamp(OrderType.ASCENDING))
+        getMachines(MachineOrderKey.Name(OrderType.ASCENDING))
     }
 
     fun onEvent(event: MachinesListEvent) {
@@ -38,6 +38,10 @@ class MachinesListViewModel @Inject constructor(
                     state.value.machineOrderKey.orderType == event.orderKey.orderType
                 ) {
                     return
+                } else {
+                    _state.value = state.value.copy(
+                        machineOrderKey = event.orderKey
+                    )
                 }
             }
 
@@ -63,12 +67,12 @@ class MachinesListViewModel @Inject constructor(
         }
     }
 
-    private fun getMachines(machineOrderKey: MachineOrderKey) {
+    private fun getMachines(orderKey: MachineOrderKey) {
         _getMachinesJob?.cancel()
-        _getMachinesJob = useCases.getMachines(machineOrderKey).onEach { machines ->
+        _getMachinesJob = useCases.getMachines(orderKey).onEach { machines ->
             _state.value = state.value.copy(
                 machines = machines,
-                machineOrderKey = machineOrderKey
+                machineOrderKey = orderKey
             )
         }.launchIn(viewModelScope)
     }
