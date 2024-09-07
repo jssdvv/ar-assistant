@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,7 +43,7 @@ fun MachineCard(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.compresor),
-                contentDescription = "",
+                contentDescription = stringResource(R.string.machine_image_content_description),
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(16 / 9f)
@@ -81,12 +82,12 @@ fun MachineCard(
                 FilledTonalButton(
                     onClick = { navHostController.navigate(MachineDataDestination) },
                 ) {
-                    Text(text = "Mantenimientos")
+                    Text(text = stringResource(R.string.activity_button_label))
                 }
                 OutlinedButton(onClick = {
 
                 }) {
-                    Text(text = "Ficha Técnica")
+                    Text(text = stringResource(R.string.technical_sheet_button_label))
                 }
 
             }

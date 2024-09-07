@@ -1,6 +1,5 @@
 package com.jssdvv.ar_maintassist.machines.presentation.machines_list
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -34,12 +33,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.jssdvv.ar_maintassist.R
-import com.jssdvv.ar_maintassist.core.domain.utils.OrderType
-import com.jssdvv.ar_maintassist.machines.domain.utils.MachineOrderKey
 import com.jssdvv.ar_maintassist.machines.presentation.machines_list.components.MachineCard
 import com.jssdvv.ar_maintassist.machines.presentation.machines_list.components.MachinesListOrderSection
 
@@ -65,7 +63,7 @@ fun MachinesListScreen(
                 selected = selectedChip,
                 onClick = { selectedChip = !selectedChip },
                 label = {
-                    Text(text = "Todas las categorías")
+                    Text(text = stringResource(R.string.categories_chip_all_options_label))
                 },
                 leadingIcon = {
                     Icon(
@@ -76,7 +74,7 @@ fun MachinesListScreen(
                                 R.drawable.manufacturing_outlined
                             }
                         ),
-                        contentDescription = "",
+                        contentDescription = stringResource(R.string.categories_chip_leading_icon_content_description),
                         modifier = Modifier.size(AssistChipDefaults.IconSize)
                     )
                 },
@@ -87,7 +85,7 @@ fun MachinesListScreen(
                         } else {
                             Icons.Default.KeyboardArrowDown
                         },
-                        contentDescription = "",
+                        contentDescription = stringResource(R.string.categories_chip_trailing_icon_content_description),
                         modifier = Modifier.size(AssistChipDefaults.IconSize)
                     )
                 }
@@ -99,7 +97,7 @@ fun MachinesListScreen(
             ) {
                 Icon(
                     painter = painterResource(R.drawable.filter_outlined),
-                    contentDescription = ""
+                    contentDescription = stringResource(R.string.icon_filter_button_content_description)
                 )
             }
         }
@@ -116,7 +114,6 @@ fun MachinesListScreen(
                 },
             )
         }
-        Log.d("CAMBIAR_ORDEN", state.value.machineOrderKey.orderKeyName)
         Spacer(modifier = Modifier.height(8.dp))
         LazyColumn(
             modifier = Modifier.fillMaxSize()

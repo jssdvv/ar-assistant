@@ -9,7 +9,9 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.jssdvv.ar_maintassist.R
 import com.jssdvv.ar_maintassist.core.domain.utils.OrderType
 import com.jssdvv.ar_maintassist.machines.domain.utils.MachineOrderKey
 
@@ -24,8 +26,8 @@ fun MachinesListOrderSection(
         MachineOrderKey.Timestamp(orderKey.orderType)
     )
     val orderTypes = listOf(
-        Pair(OrderType.ASCENDING, "Ascending"),
-        Pair(OrderType.DESCENDING, "Descending")
+        Pair(OrderType.ASCENDING, stringResource(R.string.order_type_ascending_name)),
+        Pair(OrderType.DESCENDING,stringResource(R.string.order_type_descending_name))
     )
     LazyColumn(
         modifier = modifier
@@ -37,7 +39,7 @@ fun MachinesListOrderSection(
                         selected = it.orderKeyName == orderKey.orderKeyName,
                         onClick = { onOrderKeyChange(it) },
                         label = {
-                            Text(it.orderKeyName)
+                            Text(stringResource(it.orderKeyName))
                         }
                     )
                     Spacer(modifier = Modifier.padding(8.dp))

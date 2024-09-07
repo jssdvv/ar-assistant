@@ -5,4 +5,17 @@
     <string name="machines_title">Máquinas</string>
     <string name="inventory_title">Inventario</string>
     <string name="agenda_title">Agenda</string>
+    <string name="activity_button_label">Actividades</string>
+    <string name="technical_sheet_button_label">Ficha técnica</string>
+    <string name="machine_image_content_description">Imagen de la carta de la máquina</string>
+    <string name="categories_chip_all_options_label">Todas las categorías</string>
+    <string name="categories_chip_leading_icon_content_description">Ícono identificativo del chip de categorías</string>
+    <string name="categories_chip_trailing_icon_content_description">Ícono que indica el despliegue de opciones de categorías</string>
+    <string name="machine_name_order_key_name">Nombre</string>
+    <string name="machine_category_order_key_name">Categoría</string>
+    <string name="machine_timestamp_order_key_name">Fecha de creación</string>
+    <string name="order_type_ascending_name">Ascendente</string>
+    <string name="order_type_descending_name">Descendente</string>
+    <string name="icon_filter_button_content_description">Este ícono alterna la visibilidad de la sección de filtrado</string>
+
 </resources>

@@ -1,24 +1,25 @@
 package com.jssdvv.ar_maintassist.machines.domain.utils
 
+import com.jssdvv.ar_maintassist.R
 import com.jssdvv.ar_maintassist.core.domain.utils.OrderType
 
 sealed class MachineOrderKey(
     val orderType: OrderType,
-    val orderKeyName: String
+    val orderKeyName: Int
 ) {
     class Name(
         orderType: OrderType,
-        orderKeyName: String = "Name"
+        orderKeyName: Int = R.string.machine_name_order_key_name
     ) : MachineOrderKey(orderType, orderKeyName)
 
     class Category(
         orderType: OrderType,
-        orderKeyName: String = "Category"
+        orderKeyName: Int = R.string.machine_category_order_key_name
     ) : MachineOrderKey(orderType, orderKeyName)
 
     class Timestamp(
         orderType: OrderType,
-        orderKeyName: String = "Creation Date"
+        orderKeyName: Int = R.string.machine_timestamp_order_key_name
     ) : MachineOrderKey(orderType, orderKeyName)
 
     fun copy(orderType: OrderType): MachineOrderKey {

@@ -4,4 +4,17 @@
     <string name="machines_title">Machines</string>
     <string name="inventory_title">Inventory</string>
     <string name="agenda_title">Agenda</string>
+    <string name="activity_button_label">Activities</string>
+    <string name="technical_sheet_button_label">Technical sheet</string>
+    <string name="machine_image_content_description">Image of the current machine card</string>
+    <string name="categories_chip_all_options_label">All categories</string>
+    <string name="categories_chip_leading_icon_content_description">Category chip identification icon</string>
+    <string name="categories_chip_trailing_icon_content_description">Icon that indicates the display of category options</string>
+    <string name="machine_name_order_key_name">Name</string>
+    <string name="machine_category_order_key_name">Category</string>
+    <string name="machine_timestamp_order_key_name">Creation date</string>
+    <string name="order_type_ascending_name">Ascending</string>
+    <string name="order_type_descending_name">Descending</string>
+    <string name="icon_filter_button_content_description">This icon toggles the visibility of the filtering section.</string>
+
 </resources>
