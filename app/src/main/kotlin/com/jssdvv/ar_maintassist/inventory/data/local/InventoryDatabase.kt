@@ -8,10 +8,10 @@ import com.jssdvv.ar_maintassist.inventory.domain.models.InventoryItemTypeConver
 
 @Database(entities = [InventoryItemEntity::class], version = 1, exportSchema = false)
 @TypeConverters(InventoryItemTypeConverter::class)
-abstract class InventoryItemDatabase : RoomDatabase() {
-    abstract val dao: InventoryItemDao
+abstract class InventoryDatabase : RoomDatabase() {
+    abstract val inventoryItemDao: InventoryItemDao
 
     companion object {
-        const val DATABASE_NAME = "inventoryItemDatabase"
+        const val DATABASE_NAME = "inventoryDatabase"
     }
 }
