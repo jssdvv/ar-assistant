@@ -43,6 +43,7 @@ class MachinesListViewModel @Inject constructor(
                         machineOrderKey = event.orderKey
                     )
                 }
+                getMachines(event.orderKey)
             }
 
             is MachinesListEvent.DeleteMachine -> {

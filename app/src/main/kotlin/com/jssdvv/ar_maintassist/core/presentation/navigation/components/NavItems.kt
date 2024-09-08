@@ -2,8 +2,8 @@ package com.jssdvv.ar_maintassist.core.presentation.navigation.components
 
 import com.jssdvv.ar_maintassist.R
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.AgendaNavGraph
-import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.InventoryNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.HomeNavGraph
+import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.InventoryNavGraph
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.MachinesNavGraph
 
 sealed class NavItems(
