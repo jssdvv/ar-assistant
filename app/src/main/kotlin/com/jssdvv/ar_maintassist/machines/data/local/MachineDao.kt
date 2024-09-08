@@ -5,8 +5,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.jssdvv.ar_maintassist.machines.domain.models.MachineEntity
+import com.jssdvv.ar_maintassist.machines.domain.models.MachineWithActivities
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -28,6 +30,10 @@ interface MachineDao {
 
     @Query("SELECT * FROM machineTable ORDER BY timestamp DESC")
     fun getAllMachinesByTimestampDesc(): Flow<List<MachineEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM machineTable")
+    fun getMachineWithActivities(): Flow<List<MachineWithActivities>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertMachine(entity: MachineEntity)
