@@ -1,9 +1,11 @@
-package com.jssdvv.ar_maintassist.machines.presentation.machine_data
+package com.jssdvv.ar_maintassist.machines.presentation.activities_list
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -14,18 +16,29 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.jssdvv.ar_maintassist.R
-import com.jssdvv.ar_maintassist.machines.presentation.machine_data.components.MaintenanceCard
+import com.jssdvv.ar_maintassist.machines.presentation.activities_list.components.ActivityCard
 
 @Composable
-fun MachineDataScreen(
-    modifier: Modifier = Modifier,
-    navHostController: NavHostController
+fun ActivitiesListScreen(
+    navHostController: NavHostController,
+    machineId: Int,
+    viewModel: ActivitiesListViewModel = hiltViewModel()
 ) {
+
+
+    val state = viewModel.state.collectAsState()
+    LaunchedEffect(true) {
+        viewModel.onEvent(
+            ActivitiesListEvent.GetMachineId(machineId)
+        )
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -40,26 +53,16 @@ fun MachineDataScreen(
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
-            item {
-                MaintenanceCard(
+            items(state.value.activities) { activity ->
+                ActivityCard(
+                    modifier = Modifier.fillParentMaxWidth(),
                     navHostController = navHostController,
-                    imgId = R.drawable.cabezal,
-                    title = "mantenimiento del cabezal",
-                    description = "Guía sobre como armar y desarmar el cabezal del compresor, así mismo de comprobar sus componentes y reemplazar partes"
+                    entity = activity
                 )
-                Spacer(modifier = Modifier.padding(8.dp))
-                MaintenanceCard(
-                    navHostController = navHostController,
-                    imgId = R.drawable.poleas,
-                    title = "Mantenimiento de poleas",
-                    description = "Guía sobre como armar y desarmar las poleas del compresor, así mismo de comprobar sus componentes y reemplazar partes"
-                )
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
-
     }
-
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

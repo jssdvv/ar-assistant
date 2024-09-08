@@ -1,4 +1,4 @@
-package com.jssdvv.ar_maintassist.machines.presentation.machine_data.components
+package com.jssdvv.ar_maintassist.machines.presentation.activities_list.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,63 +24,74 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.jssdvv.ar_maintassist.R
 import com.jssdvv.ar_maintassist.core.presentation.navigation.graphs.ArCameraDestination
+import com.jssdvv.ar_maintassist.machines.domain.models.ActivityEntity
 
 @Composable
-fun MaintenanceCard(
+fun ActivityCard(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
-    imgId: Int,
-    title: String,
-    description: String,
+    entity: ActivityEntity
 ) {
     ElevatedCard(
         modifier = modifier,
-        onClick = {
-
-        }
+        onClick = {}
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
             Image(
-                painter = painterResource(id = imgId),
-                contentDescription = "",
+                painter = painterResource(R.drawable.poleas),
+                contentDescription = "Esta es la imagen representativa de la actividad de mantenimiento",
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(16 / 9f)
-                    .clip(CardDefaults.shape),
+                    .clip(RoundedCornerShape(6.dp)),
                 contentScale = ContentScale.Crop,
             )
             Spacer(
-                modifier = Modifier.padding(4.dp)
-            )
-            Spacer(
-                modifier = Modifier.padding(4.dp)
+                modifier = Modifier.height(16.dp)
             )
             Text(
-                text = title,
+                text = entity.category,
+                style = MaterialTheme.typography.titleSmall
+            )
+            Spacer(
+                modifier = Modifier.height(4.dp)
+            )
+            Text(
+                text = entity.name,
                 style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold)
             )
             Spacer(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.height(8.dp)
             )
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = description,
+                text = entity.description,
                 textAlign = TextAlign.Justify,
                 style = MaterialTheme.typography.bodyLarge
             )
             Spacer(
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.height(8.dp)
             )
-
             Row {
-                FilledTonalButton(onClick = { navHostController.navigate(ArCameraDestination) }) {
-                    Text(text = "Iniciar sesión RA")
+                FilledTonalButton(
+                    onClick = { navHostController.navigate(ArCameraDestination) }
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ar_outlined),
+                        contentDescription = "Icono representativo del botón de inciar sesión de realidad aumentada de la carta de la actividad, que navega a la pantalla de camara de realidad aumentada"
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = "Sesión de Realidad Aumentada")
                 }
             }
+            Spacer(
+                modifier = Modifier.height(8.dp)
+            )
         }
     }
 }
