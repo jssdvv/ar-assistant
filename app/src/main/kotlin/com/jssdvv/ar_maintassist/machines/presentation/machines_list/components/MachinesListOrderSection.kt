@@ -1,7 +1,7 @@
 package com.jssdvv.ar_maintassist.machines.presentation.machines_list.components
 
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -42,7 +42,7 @@ fun MachinesListOrderSection(
                             Text(stringResource(it.orderKeyName))
                         }
                     )
-                    Spacer(modifier = Modifier.padding(8.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
                 }
             }
         }
@@ -56,7 +56,7 @@ fun MachinesListOrderSection(
                             Text(orderType.second)
                         }
                     )
-                    Spacer(modifier = Modifier.padding(8.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
                 }
             }
         }
