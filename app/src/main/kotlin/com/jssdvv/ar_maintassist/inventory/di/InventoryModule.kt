@@ -2,7 +2,7 @@ package com.jssdvv.ar_maintassist.inventory.di
 
 import android.app.Application
 import androidx.room.Room
-import com.jssdvv.ar_maintassist.inventory.data.local.InventoryItemDatabase
+import com.jssdvv.ar_maintassist.inventory.data.local.InventoryDatabase
 import com.jssdvv.ar_maintassist.inventory.data.repositories.InventoryItemRepositoryImpl
 import com.jssdvv.ar_maintassist.inventory.domain.repositories.InventoryItemRepository
 import com.jssdvv.ar_maintassist.inventory.domain.usescases.DeleteInventoryItem
@@ -21,18 +21,18 @@ import javax.inject.Singleton
 object InventoryModule {
     @Provides
     @Singleton
-    fun provideInventoryDatabase(context: Application): InventoryItemDatabase {
+    fun provideInventoryDatabase(context: Application): InventoryDatabase {
         return Room.databaseBuilder(
             context = context,
-            klass = InventoryItemDatabase::class.java,
-            name = InventoryItemDatabase.DATABASE_NAME
+            klass = InventoryDatabase::class.java,
+            name = InventoryDatabase.DATABASE_NAME
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideInventoryRepository(database: InventoryItemDatabase): InventoryItemRepository {
-        return InventoryItemRepositoryImpl(database.dao)
+    fun provideInventoryRepository(database: InventoryDatabase): InventoryItemRepository {
+        return InventoryItemRepositoryImpl(database.inventoryItemDao)
     }
 
     @Provides

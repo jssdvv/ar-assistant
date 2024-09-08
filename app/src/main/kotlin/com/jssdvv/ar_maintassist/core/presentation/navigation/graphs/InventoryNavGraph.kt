@@ -5,8 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.jssdvv.ar_maintassist.inventory.presentation.item_add.ItemAddScreen
-import com.jssdvv.ar_maintassist.inventory.presentation.item_edit.ItemEditScreen
 import com.jssdvv.ar_maintassist.inventory.presentation.item_details.ItemDetailsScreen
+import com.jssdvv.ar_maintassist.inventory.presentation.item_edit.ItemEditScreen
 import com.jssdvv.ar_maintassist.inventory.presentation.items_list.ItemsListScreen
 import kotlinx.serialization.Serializable
 
