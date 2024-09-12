@@ -1,10 +1,10 @@
 package com.jssdvv.ara.core.presentation.navigation.components
 
 import com.jssdvv.ara.R
-import com.jssdvv.ara.core.presentation.navigation.graphs.AgendaNavGraph
-import com.jssdvv.ara.core.presentation.navigation.graphs.HomeNavGraph
-import com.jssdvv.ara.core.presentation.navigation.graphs.InventoryNavGraph
-import com.jssdvv.ara.core.presentation.navigation.graphs.MachinesNavGraph
+import com.jssdvv.ara.core.presentation.navigation.graphs.AgendaNavGraphDestination
+import com.jssdvv.ara.core.presentation.navigation.graphs.HomeNavGraphDestination
+import com.jssdvv.ara.core.presentation.navigation.graphs.InventoryNavGraphDestination
+import com.jssdvv.ara.core.presentation.navigation.graphs.MachinesNavGraphDestination
 
 sealed class AraNavGraphItems(
     val labelTextId: Int,
@@ -18,7 +18,7 @@ sealed class AraNavGraphItems(
         selectedIcon = R.drawable.home_filled,
         unselectedIcon = R.drawable.home_outlined,
         description = "",
-        navGraphDestination = HomeNavGraph
+        navGraphDestination = HomeNavGraphDestination
     )
 
     data object MachinesNavItem : AraNavGraphItems(
@@ -26,7 +26,7 @@ sealed class AraNavGraphItems(
         selectedIcon = R.drawable.tools_filled,
         unselectedIcon = R.drawable.tools_outlined,
         description = "",
-        navGraphDestination = MachinesNavGraph
+        navGraphDestination = MachinesNavGraphDestination
     )
 
     data object InventoryNavItem : AraNavGraphItems(
@@ -34,7 +34,7 @@ sealed class AraNavGraphItems(
         selectedIcon = R.drawable.storage_filled,
         unselectedIcon = R.drawable.storage_outlined,
         description = "",
-        navGraphDestination = InventoryNavGraph
+        navGraphDestination = InventoryNavGraphDestination
     )
 
     data object AgendaNavItem : AraNavGraphItems(
@@ -42,6 +42,6 @@ sealed class AraNavGraphItems(
         selectedIcon = R.drawable.calendar_filled,
         unselectedIcon = R.drawable.calendar_outlined,
         description = "",
-        navGraphDestination = AgendaNavGraph
+        navGraphDestination = AgendaNavGraphDestination
     )
 }

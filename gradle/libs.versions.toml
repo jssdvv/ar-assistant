@@ -5,7 +5,7 @@ android-minSdk = "26"
 android-targetSdk = "34"
 
 # Libraries Versions
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"

@@ -34,13 +34,13 @@ import com.jssdvv.ara.machines.domain.models.MachineEntity
 @Composable
 fun MachineCard(
     modifier: Modifier = Modifier,
-    navHostController: NavHostController,
     entity: MachineEntity,
-    onNavigateToMachineData: @Composable () -> Unit
+    onNavigateToActivitiesList: (Int) -> Unit,
+    onNavigateToEditMachine: (Int) -> Unit
 ) {
     ElevatedCard(
         modifier = modifier,
-        onClick = { }
+        onClick = { onNavigateToEditMachine(entity.machineId) }
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -89,11 +89,7 @@ fun MachineCard(
             Row {
                 FilledTonalButton(
                     onClick = {
-                        navHostController.navigate(
-                            ActivitiesListDestination(
-                                entity.machineId
-                            )
-                        )
+                        onNavigateToActivitiesList(entity.machineId)
                     },
                 ) {
                     Text(text = stringResource(R.string.activity_button_label))

@@ -42,10 +42,12 @@ import com.jssdvv.ara.R
 import com.jssdvv.ara.machines.domain.utils.MachineOrderKey
 import com.jssdvv.ara.machines.presentation.machines_list.components.MachineCard
 import com.jssdvv.ara.machines.presentation.machines_list.components.MachinesListOrderSection
+import kotlin.reflect.KFunction1
 
 @Composable
 fun MachinesListScreen(
-    navHostController: NavHostController,
+    onNavigateToActivitiesList: (Int) -> Unit,
+    onNavigateToEditMachine: (Int) -> Unit
 ) {
     val viewModel = hiltViewModel<MachinesListViewModel>()
     val state by remember { viewModel.state }.collectAsState()
@@ -69,9 +71,9 @@ fun MachinesListScreen(
             items(state.machines) { machineEntity ->
                 MachineCard(
                     modifier = Modifier.fillMaxWidth(),
-                    navHostController = navHostController,
                     entity = machineEntity,
-                    onNavigateToMachineData = {}
+                    onNavigateToActivitiesList = onNavigateToActivitiesList,
+                    onNavigateToEditMachine = onNavigateToEditMachine
                 )
             }
         }
@@ -144,11 +146,4 @@ fun FilteringRow(
             onOrderKeyChange = onOrderKeyChange,
         )
     }
-}
-
-@Composable
-internal fun MachinesListScreen(
-
-){
-
 }

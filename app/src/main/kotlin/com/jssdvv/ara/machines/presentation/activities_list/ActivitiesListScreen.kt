@@ -29,6 +29,8 @@ import com.jssdvv.ara.machines.presentation.activities_list.components.ActivityC
 fun ActivitiesListScreen(
     navHostController: NavHostController,
     machineId: Int,
+    onNavigateToAddActivity: () -> Unit,
+    onNavigateToArCamera: () -> Unit,
     viewModel: ActivitiesListViewModel = hiltViewModel()
 ) {
 
@@ -56,8 +58,8 @@ fun ActivitiesListScreen(
             items(state.value.activities) { activity ->
                 ActivityCard(
                     modifier = Modifier.fillParentMaxWidth(),
-                    navHostController = navHostController,
-                    entity = activity
+                    entity = activity,
+                    onNavigateToArCamera =onNavigateToArCamera
                 )
                 Spacer(modifier = Modifier.height(16.dp))
             }

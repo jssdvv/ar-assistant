@@ -34,8 +34,8 @@ import com.jssdvv.ara.machines.domain.models.ActivityEntity
 @Composable
 fun ActivityCard(
     modifier: Modifier = Modifier,
-    navHostController: NavHostController,
-    entity: ActivityEntity
+    entity: ActivityEntity,
+    onNavigateToArCamera: () -> Unit
 ) {
     ElevatedCard(
         modifier = modifier,
@@ -87,7 +87,7 @@ fun ActivityCard(
             )
             Row {
                 FilledTonalButton(
-                    onClick = { navHostController.navigate(ArCameraDestination) }
+                    onClick = { onNavigateToArCamera() }
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ar_outlined),
