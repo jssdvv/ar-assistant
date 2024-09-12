@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AR MaintAssist</string>
+    <string name="app_name">AR Assistance</string>
     <string name="home_title">Home</string>
     <string name="machines_title">Machines</string>
     <string name="inventory_title">Inventory</string>
@@ -16,5 +16,4 @@
     <string name="order_type_ascending_name">Ascending</string>
     <string name="order_type_descending_name">Descending</string>
     <string name="icon_filter_button_content_description">This icon toggles the visibility of the filtering section.</string>
-
 </resources>

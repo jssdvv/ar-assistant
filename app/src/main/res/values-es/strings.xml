@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AR MaintAssist</string>
+    <string name="app_name">Asistente RA</string>
     <string name="home_title">Inicio</string>
     <string name="machines_title">Máquinas</string>
     <string name="inventory_title">Inventario</string>

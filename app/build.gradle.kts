@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.jssdvv.ar_maintassist"
+    namespace = "com.jssdvv.ara"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets.all {
@@ -17,7 +17,7 @@ android {
         res.srcDirs("src/main/res")
     }
     defaultConfig {
-        applicationId = "com.jssdvv.ar_maintassist"
+        applicationId = "com.jssdvv.ara"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -56,6 +56,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.material3.adaptive.navigation.suite.android)
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -100,6 +101,8 @@ dependencies {
     implementation(libs.google.dagger.hilt.android)
     kapt(libs.google.dagger.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.coil.compose)
 }
 
 kapt {
