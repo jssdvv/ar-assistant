@@ -7,13 +7,13 @@ import androidx.navigation.navigation
 import com.jssdvv.ara.agenda.presentation.screens.CalendarScreen
 import kotlinx.serialization.Serializable
 
-@Serializable data object AgendaNavGraph
-@Serializable data object CalendarDestination
+@Serializable object AgendaNavGraphDestination
+@Serializable object CalendarDestination
 
 fun NavGraphBuilder.agendaNavGraph(
     navHostController: NavHostController
 ) {
-    navigation<AgendaNavGraph>(startDestination = CalendarDestination) {
+    navigation<AgendaNavGraphDestination>(startDestination = CalendarDestination) {
         composable<CalendarDestination> {
             CalendarScreen(navHostController = navHostController)
         }

@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.jssdvv.ara.core.presentation.AraAppState
-import com.jssdvv.ara.core.presentation.navigation.graphs.HomeNavGraph
+import com.jssdvv.ara.core.presentation.navigation.graphs.HomeNavGraphDestination
 import com.jssdvv.ara.core.presentation.navigation.graphs.agendaNavGraph
 import com.jssdvv.ara.core.presentation.navigation.graphs.homeNavGraph
 import com.jssdvv.ara.core.presentation.navigation.graphs.inventoryNavGraph
@@ -19,7 +19,7 @@ fun AraNavHost(
 ) {
     val navHostController = appState.navHostController
     NavHost(
-        startDestination = HomeNavGraph,
+        startDestination = HomeNavGraphDestination,
         navController = navHostController,
         modifier = Modifier.padding(paddingValues)
     ) {

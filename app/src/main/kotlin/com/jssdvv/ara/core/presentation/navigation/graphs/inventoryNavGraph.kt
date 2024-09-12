@@ -10,14 +10,14 @@ import com.jssdvv.ara.inventory.presentation.item_edit.ItemEditScreen
 import com.jssdvv.ara.inventory.presentation.items_list.ItemsListScreen
 import kotlinx.serialization.Serializable
 
-@Serializable data object InventoryNavGraph
-@Serializable data object ItemsListDestination
-@Serializable data object ItemAddDestination
-@Serializable data object ItemEditDestination
-@Serializable data object ItemDetailsDestination
+@Serializable object InventoryNavGraphDestination
+@Serializable object ItemsListDestination
+@Serializable object ItemAddDestination
+@Serializable object ItemEditDestination
+@Serializable object ItemDetailsDestination
 
 fun NavGraphBuilder.inventoryNavGraph(navHostController: NavHostController) {
-    navigation<InventoryNavGraph>(startDestination = ItemsListDestination) {
+    navigation<InventoryNavGraphDestination>(startDestination = ItemsListDestination) {
         composable<ItemsListDestination> {
             ItemsListScreen(navHostController = navHostController)
         }

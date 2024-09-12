@@ -7,13 +7,13 @@ import androidx.navigation.navigation
 import com.jssdvv.ara.home.presentation.screens.HomeScreen
 import kotlinx.serialization.Serializable
 
-@Serializable object HomeNavGraph
+@Serializable object HomeNavGraphDestination
 @Serializable object HomeDestination
 
 fun NavGraphBuilder.homeNavGraph(
     navHostController : NavHostController
 ) {
-    navigation<HomeNavGraph>(startDestination = HomeDestination){
+    navigation<HomeNavGraphDestination>(startDestination = HomeDestination){
         composable<HomeDestination>{
             HomeScreen(navHostController = navHostController)
         }

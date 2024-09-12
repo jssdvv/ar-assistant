@@ -10,7 +10,7 @@ import com.jssdvv.ara.machines.presentation.ar_camera.ArCameraScreen
 import com.jssdvv.ara.machines.presentation.machines_list.MachinesListScreen
 import kotlinx.serialization.Serializable
 
-@Serializable object MachinesNavGraph
+@Serializable object MachinesNavGraphDestination
 @Serializable object MachinesListDestination
 @Serializable data class ActivitiesListDestination(val machineId: Int)
 @Serializable object ArCameraDestination
@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
 fun NavGraphBuilder.machinesNavGraph(
     navHostController: NavHostController
 ){
-    navigation<MachinesNavGraph>(startDestination = MachinesListDestination){
+    navigation<MachinesNavGraphDestination>(startDestination = MachinesListDestination){
         composable<MachinesListDestination>{
             MachinesListScreen(navHostController = navHostController)
         }
