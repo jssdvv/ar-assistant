@@ -24,11 +24,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.jssdvv.ara.R
-import com.jssdvv.ara.core.presentation.navigation.graphs.ActivitiesListDestination
 import com.jssdvv.ara.machines.domain.models.MachineEntity
 
 @Composable

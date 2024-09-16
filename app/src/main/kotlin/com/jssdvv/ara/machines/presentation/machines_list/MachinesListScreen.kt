@@ -23,6 +23,7 @@ import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -37,44 +38,53 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.jssdvv.ara.R
 import com.jssdvv.ara.machines.domain.utils.MachineOrderKey
 import com.jssdvv.ara.machines.presentation.machines_list.components.MachineCard
+import com.jssdvv.ara.machines.presentation.machines_list.components.MachinesListFAB
 import com.jssdvv.ara.machines.presentation.machines_list.components.MachinesListOrderSection
-import kotlin.reflect.KFunction1
 
 @Composable
 fun MachinesListScreen(
+    onNavigateBack: () -> Unit,
+    onNavigateToAddMachine: () -> Unit,
+    onNavigateToEditMachine: (Int) -> Unit,
     onNavigateToActivitiesList: (Int) -> Unit,
-    onNavigateToEditMachine: (Int) -> Unit
 ) {
     val viewModel = hiltViewModel<MachinesListViewModel>()
     val state by remember { viewModel.state }.collectAsState()
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        FilteringRow(
-            Modifier.fillMaxWidth(),
-            orderKey = state.machineOrderKey,
-            onOrderKeyChange = { orderKey ->
-                viewModel.onEvent(MachinesListEvent.OrderMachines(orderKey))
-            },
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
+    Scaffold(
+        floatingActionButton = {
+            MachinesListFAB(
+                onNavigateToAddMachine = onNavigateToAddMachine
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp)
         ) {
-            items(state.machines) { machineEntity ->
-                MachineCard(
-                    modifier = Modifier.fillMaxWidth(),
-                    entity = machineEntity,
-                    onNavigateToActivitiesList = onNavigateToActivitiesList,
-                    onNavigateToEditMachine = onNavigateToEditMachine
-                )
+            FilteringRow(
+                Modifier.fillMaxWidth(),
+                orderKey = state.machineOrderKey,
+                onOrderKeyChange = { orderKey ->
+                    viewModel.onEvent(MachinesListEvent.OrderMachines(orderKey))
+                },
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                items(state.machines) { machineEntity ->
+                    MachineCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        entity = machineEntity,
+                        onNavigateToActivitiesList = onNavigateToActivitiesList,
+                        onNavigateToEditMachine = onNavigateToEditMachine
+                    )
+                }
             }
         }
     }
@@ -86,6 +96,7 @@ fun FilteringRow(
     orderKey: MachineOrderKey,
     onOrderKeyChange: (MachineOrderKey) -> Unit,
 ) {
+
     var selectedChip by rememberSaveable { mutableStateOf(false) }
     var isOrderSectionVisible by rememberSaveable { mutableStateOf(false) }
     Row(
