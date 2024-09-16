@@ -1,5 +1,7 @@
 package com.jssdvv.ara.core.presentation
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -7,6 +9,7 @@ import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -14,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.jssdvv.ara.core.presentation.navigation.AraNavHost
 
 @Composable
@@ -34,8 +38,18 @@ internal fun AraApp(
     modifier: Modifier,
     windowAdaptiveInfo: WindowAdaptiveInfo
 ) {
-    val layoutType = NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(windowAdaptiveInfo)
-    val currentGraphDestination = appState.currentGraphDestination
+    val currentDestination = appState.currentDestination
+    val currentGraphDestination = appState.currentNavGraphDestination
+    val layoutType = with(windowAdaptiveInfo) {
+        if (currentDestination == currentGraphDestination) {
+            when (windowSizeClass.windowWidthSizeClass) {
+                WindowWidthSizeClass.EXPANDED -> NavigationSuiteType.NavigationRail
+                else -> NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(windowAdaptiveInfo)
+            }
+        } else {
+            NavigationSuiteType.None
+        }
+    }
     NavigationSuiteScaffold(
         navigationSuiteItems = {
             appState.navGraphItems.forEach { navGraphItem ->
@@ -50,7 +64,7 @@ internal fun AraApp(
                     icon = {
                         Icon(
                             painter = painterResource(
-                                if (selected) navGraphItem.selectedIcon else navGraphItem.unselectedIcon
+                                if (selected) navGraphItem.selectedIconId else navGraphItem.unselectedIconId
                             ),
                             contentDescription = navGraphItem.description
                         )
@@ -64,7 +78,10 @@ internal fun AraApp(
         layoutType = layoutType
     ) {
         Scaffold { paddingValues ->
-            AraNavHost(appState, paddingValues)
+            AraNavHost(
+                appState = appState,
+                modifier = Modifier.padding(paddingValues)
+            )
         }
     }
 }
