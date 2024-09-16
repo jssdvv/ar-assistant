@@ -2,15 +2,18 @@ package com.jssdvv.ara.core.presentation.navigation.graphs
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
+import com.jssdvv.ara.core.presentation.AraAppState
+import com.jssdvv.ara.core.presentation.navigation.slideInToLeft
+import com.jssdvv.ara.core.presentation.navigation.slideOutToRight
 import com.jssdvv.ara.machines.presentation.activities_list.ActivitiesListScreen
-import com.jssdvv.ara.machines.presentation.addactivity.AddActivityScreen
-import com.jssdvv.ara.machines.presentation.addmachine.AddMachineScreen
+import com.jssdvv.ara.machines.presentation.add_activity.AddActivityScreen
+import com.jssdvv.ara.machines.presentation.add_machine.AddMachineScreen
 import com.jssdvv.ara.machines.presentation.ar_camera.ArCameraScreen
-import com.jssdvv.ara.machines.presentation.editmachine.EditMachineScreen
+import com.jssdvv.ara.machines.presentation.edit_activity.EditActivityScreen
+import com.jssdvv.ara.machines.presentation.edit_machine.EditMachineScreen
 import com.jssdvv.ara.machines.presentation.machines_list.MachinesListScreen
 import kotlinx.serialization.Serializable
 
@@ -33,38 +36,61 @@ data class ActivitiesListDestination(val machineId: Int)
 object AddActivityDestination
 
 @Serializable
+data class EditActivityDestination(val activityId: Int)
+
+@Serializable
 object ArCameraDestination
 
 fun NavGraphBuilder.machinesNavGraph(
-    navHostController: NavHostController
+    appState: AraAppState
 ) {
+    val navHostController = appState.navHostController
     navigation<MachinesNavGraphDestination>(MachinesListDestination) {
-        composable<MachinesListDestination> {
+        composable<MachinesListDestination>(
+
+        ) {
             MachinesListScreen(
-                onNavigateToActivitiesList = navHostController::navigateToActivitiesList,
+                onNavigateBack = { navHostController.navigateUp() },
+                onNavigateToAddMachine = navHostController::navigateToAddMachine,
                 onNavigateToEditMachine = navHostController::navigateToEditMachine,
+                onNavigateToActivitiesList = navHostController::navigateToActivitiesList,
             )
         }
-        composable<AddMachineDestination> {
-            AddMachineScreen()
+        composable<AddMachineDestination>(
+            enterTransition = ::slideInToLeft,
+            exitTransition = ::slideOutToRight,
+            popEnterTransition = ::slideInToLeft,
+            popExitTransition = ::slideOutToRight
+        ) {
+            AddMachineScreen(
+                onNavigateBack = { navHostController.navigateUp() }
+            )
         }
         composable<EditMachineDestination> {
             val args = it.toRoute<EditMachineDestination>()
             EditMachineScreen(
-                machineId = args.machineId
+                machineId = args.machineId,
+                onNavigateBack = { navHostController.navigateUp() }
             )
         }
         composable<ActivitiesListDestination> {
             val args = it.toRoute<ActivitiesListDestination>()
             ActivitiesListScreen(
-                navHostController = navHostController,
                 machineId = args.machineId,
+                onNavigateBack = { navHostController.navigateUp() },
                 onNavigateToAddActivity = navHostController::navigateToAddActivity,
+                onNavigateToEditActivity = navHostController::navigateToEditActivity,
                 onNavigateToArCamera = navHostController::navigateToArCamera
             )
         }
         composable<AddActivityDestination> {
             AddActivityScreen()
+        }
+        composable<EditActivityDestination> {
+            val args = it.toRoute<EditActivityDestination>()
+            EditActivityScreen(
+                activityId = args.activityId
+            )
         }
         composable<ArCameraDestination> {
             ArCameraScreen(navHostController = navHostController)
@@ -72,18 +98,20 @@ fun NavGraphBuilder.machinesNavGraph(
     }
 }
 
-fun NavController.navigateToActivitiesList(machineId: Int) =
-    navigate(ActivitiesListDestination(machineId))
-
-fun NavController.navigateToEditMachine(machineId: Int) =
-    navigate(EditMachineDestination(machineId))
-
-fun NavController.navigateToAddMachine() =
+internal fun NavController.navigateToAddMachine() =
     navigate(AddMachineDestination)
 
-fun NavController.navigateToAddActivity() =
+internal fun NavController.navigateToEditMachine(machineId: Int) =
+    navigate(EditMachineDestination(machineId))
+
+internal fun NavController.navigateToActivitiesList(machineId: Int) =
+    navigate(ActivitiesListDestination(machineId))
+
+internal fun NavController.navigateToAddActivity() =
     navigate(AddActivityDestination)
 
-fun NavController.navigateToArCamera() =
-    navigate(ArCameraDestination)
+internal fun NavController.navigateToEditActivity(activityId: Int) =
+    navigate(EditActivityDestination(activityId))
 
+internal fun NavController.navigateToArCamera() =
+    navigate(ArCameraDestination)
