@@ -32,7 +32,7 @@ class AraAppState(
             .currentBackStackEntryAsState()
             .value?.destination
 
-    val currentGraphDestination: NavDestination?
+    val currentNavGraphDestination: NavDestination?
         @Composable get() = navHostController.currentBackStackEntryAsState()
             .value?.destination?.parent?.findStartDestination()
 
