@@ -40,14 +40,14 @@ fun MachineCard(
         modifier = modifier,
         onClick = { onNavigateToEditMachine(entity.machineId) }
     ) {
+        val painter = rememberAsyncImagePainter(
+            ImageRequest.Builder(LocalContext.current)
+                .data(entity.imageUri)
+                .build()
+        )
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            val painter = rememberAsyncImagePainter(
-                ImageRequest.Builder(LocalContext.current)
-                    .data(entity.imageUri)
-                    .build()
-            )
             Image(
                 painter = painter,
                 contentDescription = stringResource(R.string.machine_image_content_description),

@@ -14,7 +14,8 @@ import androidx.room.PrimaryKey
             entity = MachineEntity::class,
             parentColumns = ["machineId"],
             childColumns = ["machineId"],
-            onDelete = ForeignKey.CASCADE
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.NO_ACTION
         )
     ],
     indices = [
@@ -29,7 +30,8 @@ data class ActivityEntity(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "imageUri") val imageUri: Uri?,
     @ColumnInfo(name = "description") val description: String,
-    //@ColumnInfo(name = "frequency") val frequency: String,
+    @ColumnInfo(name = "frequency") val frequency: String?,
+    @ColumnInfo(name = "frequencyUnit") val frequencyUnit: String?,
     @ColumnInfo(name = "timestamp") val timestamp: Long
 )
 
