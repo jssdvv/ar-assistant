@@ -45,10 +45,8 @@ fun NavGraphBuilder.machinesNavGraph(
     appState: AraAppState
 ) {
     val navHostController = appState.navHostController
-    navigation<MachinesNavGraphDestination>(MachinesListDestination) {
-        composable<MachinesListDestination>(
-
-        ) {
+   navigation<MachinesNavGraphDestination>(MachinesListDestination) {
+        composable<MachinesListDestination> {
             MachinesListScreen(
                 onNavigateBack = { navHostController.navigateUp() },
                 onNavigateToAddMachine = navHostController::navigateToAddMachine,
@@ -73,7 +71,7 @@ fun NavGraphBuilder.machinesNavGraph(
                 onNavigateBack = { navHostController.navigateUp() }
             )
         }
-        composable<ActivitiesListDestination> {
+        composable<ActivitiesListDestination>{
             val args = it.toRoute<ActivitiesListDestination>()
             ActivitiesListScreen(
                 machineId = args.machineId,
@@ -104,7 +102,7 @@ internal fun NavController.navigateToAddMachine() =
 internal fun NavController.navigateToEditMachine(machineId: Int) =
     navigate(EditMachineDestination(machineId))
 
-internal fun NavController.navigateToActivitiesList(machineId: Int) =
+fun NavController.navigateToActivitiesList(machineId: Int) =
     navigate(ActivitiesListDestination(machineId))
 
 internal fun NavController.navigateToAddActivity() =

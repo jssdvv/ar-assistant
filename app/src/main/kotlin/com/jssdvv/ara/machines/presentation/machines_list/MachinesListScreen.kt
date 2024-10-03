@@ -114,9 +114,9 @@ fun FilteringRow(
                 Icon(
                     painter = painterResource(
                         if (selectedChip) {
-                            R.drawable.manufacturing_filled
+                            R.drawable.machines_filled
                         } else {
-                            R.drawable.manufacturing_outlined
+                            R.drawable.machines_outlined
                         }
                     ),
                     contentDescription = stringResource(R.string.categories_chip_leading_icon_content_description),
