@@ -4,22 +4,24 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.jssdvv.ara.core.presentation.AraAppState
-import com.jssdvv.ara.home.presentation.screens.HomeScreen
+import com.jssdvv.ara.home.presentation.screens.ScannerScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
-object HomeNavGraphDestination
+object ScannerNavGraphDestination
 
 @Serializable
-object HomeDestination
+object ScannerDestination
 
-fun NavGraphBuilder.homeNavGraph(
+fun NavGraphBuilder.scannerNavGraph(
     appState: AraAppState
 ) {
     val navHostController = appState.navHostController
-    navigation<HomeNavGraphDestination>(startDestination = HomeDestination) {
-        composable<HomeDestination> {
-            HomeScreen(navHostController = navHostController)
+    navigation<ScannerNavGraphDestination>(startDestination = ScannerDestination) {
+        composable<ScannerDestination> {
+            ScannerScreen(
+                onNavigateToActivityList = navHostController::navigateToActivitiesList
+            )
         }
     }
 }

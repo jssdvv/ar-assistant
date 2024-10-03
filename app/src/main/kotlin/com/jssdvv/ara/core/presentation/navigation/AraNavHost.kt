@@ -9,9 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import com.jssdvv.ara.core.presentation.AraAppState
-import com.jssdvv.ara.core.presentation.navigation.graphs.HomeNavGraphDestination
+import com.jssdvv.ara.core.presentation.navigation.graphs.ScannerNavGraphDestination
 import com.jssdvv.ara.core.presentation.navigation.graphs.agendaNavGraph
-import com.jssdvv.ara.core.presentation.navigation.graphs.homeNavGraph
+import com.jssdvv.ara.core.presentation.navigation.graphs.scannerNavGraph
 import com.jssdvv.ara.core.presentation.navigation.graphs.inventoryNavGraph
 import com.jssdvv.ara.core.presentation.navigation.graphs.machinesNavGraph
 
@@ -22,11 +22,11 @@ fun AraNavHost(
 ) {
     val navHostController = appState.navHostController
     NavHost(
-        startDestination = HomeNavGraphDestination,
+        startDestination = ScannerNavGraphDestination,
         navController = navHostController,
         modifier = modifier
     ) {
-        homeNavGraph(appState)
+        scannerNavGraph(appState)
         machinesNavGraph(appState)
         inventoryNavGraph(appState)
         agendaNavGraph(appState)

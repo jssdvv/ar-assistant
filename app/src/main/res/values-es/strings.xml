@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Asistente RA</string>
-    <string name="home_title">Inicio</string>
+    <string name="scanner_title">Escanear</string>
     <string name="machines_title">Máquinas</string>
     <string name="inventory_title">Inventario</string>
     <string name="agenda_title">Agenda</string>

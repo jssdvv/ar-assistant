@@ -37,7 +37,7 @@ class AraAppState(
             .value?.destination?.parent?.findStartDestination()
 
     val navGraphItems: List<AraNavGraphItems> = listOf(
-        AraNavGraphItems.HomeNavItem,
+        AraNavGraphItems.ScannerNavItem,
         AraNavGraphItems.MachinesNavItem,
         AraNavGraphItems.InventoryNavItem,
         AraNavGraphItems.AgendaNavItem

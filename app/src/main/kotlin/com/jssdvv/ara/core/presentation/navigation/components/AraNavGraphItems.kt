@@ -2,7 +2,7 @@ package com.jssdvv.ara.core.presentation.navigation.components
 
 import com.jssdvv.ara.R
 import com.jssdvv.ara.core.presentation.navigation.graphs.AgendaNavGraphDestination
-import com.jssdvv.ara.core.presentation.navigation.graphs.HomeNavGraphDestination
+import com.jssdvv.ara.core.presentation.navigation.graphs.ScannerNavGraphDestination
 import com.jssdvv.ara.core.presentation.navigation.graphs.InventoryNavGraphDestination
 import com.jssdvv.ara.core.presentation.navigation.graphs.MachinesNavGraphDestination
 
@@ -13,26 +13,26 @@ sealed class AraNavGraphItems(
     val description: String,
     val navGraphDestination: Any
 ) {
-    data object HomeNavItem : AraNavGraphItems(
-        labelTextId = R.string.home_title,
-        selectedIconId = R.drawable.home_filled,
-        unselectedIconId = R.drawable.home_outlined,
+    data object ScannerNavItem : AraNavGraphItems(
+        labelTextId = R.string.scanner_title,
+        selectedIconId = R.drawable.scanner_filled,
+        unselectedIconId = R.drawable.scanner_outlined,
         description = "",
-        navGraphDestination = HomeNavGraphDestination
+        navGraphDestination = ScannerNavGraphDestination
     )
 
     data object MachinesNavItem : AraNavGraphItems(
         labelTextId = R.string.machines_title,
-        selectedIconId = R.drawable.tools_filled,
-        unselectedIconId = R.drawable.tools_outlined,
+        selectedIconId = R.drawable.machines_filled,
+        unselectedIconId = R.drawable.machines_outlined,
         description = "",
         navGraphDestination = MachinesNavGraphDestination
     )
 
     data object InventoryNavItem : AraNavGraphItems(
         labelTextId = R.string.inventory_title,
-        selectedIconId = R.drawable.storage_filled,
-        unselectedIconId = R.drawable.storage_outlined,
+        selectedIconId = R.drawable.inventory_filled,
+        unselectedIconId = R.drawable.inventory_outlined,
         description = "",
         navGraphDestination = InventoryNavGraphDestination
     )
