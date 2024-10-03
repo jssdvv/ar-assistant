@@ -87,6 +87,7 @@ dependencies {
 
     // Camera
     implementation(libs.bundles.androidx.camera)
+    implementation(libs.google.mlkit.barcodeScanning)
 
     // Augmented Reality
     implementation(libs.sceneview.arsceneview)
